@@ -45,13 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xmin: 0
   xmax: 0
-  ymin: 0
   ymax: 0
-  dmin: 1.95
-  dmax: 3.72
-  xminColor: {r: 0, g: 0, b: 0, a: 0}
-  xmaxColor: {r: 0, g: 0, b: 0, a: 0}
-  yminColor: {r: 0, g: 0, b: 0, a: 0}
-  ymaxColor: {r: 0, g: 0, b: 0, a: 0}
+  ymin: 0
+  dmin: 0
+  dmax: 0
   dminColor: {r: 0.063154235, g: 0.103773594, b: 0.059229266, a: 0.078431375}
   dmaxColor: {r: 0, g: 1, b: 0, a: 0.03529412}
