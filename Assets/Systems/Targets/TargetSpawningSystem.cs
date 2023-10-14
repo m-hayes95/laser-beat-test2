@@ -7,6 +7,7 @@ using UnityEngine;
 public class TargetSpawningSystem : MonoBehaviour
 {
     [Header("Settings")]
+
     [Tooltip("Minimum X angle.")]
     [SerializeField] private float xmin;
     [Tooltip("Maximum X angle.")]
