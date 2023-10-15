@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3753455387332948966}
   - component: {fileID: 8091311501408456973}
+  - component: {fileID: 7681302145316495478}
   m_Layer: 0
   m_Name: Target Spawning System
   m_TagString: Untagged
@@ -43,11 +44,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e27159ed2195d84d87811fd37f5d777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xmin: 0
-  xmax: 0
-  ymax: 0
-  ymin: 0
-  dmin: 0
-  dmax: 0
+  dmin: 10
+  dmax: 30
+  xmin: -90
+  xmax: 90
+  ymin: -10
+  ymax: 40
   dminColor: {r: 0.063154235, g: 0.103773594, b: 0.059229266, a: 0.078431375}
-  dmaxColor: {r: 0, g: 1, b: 0, a: 0.03529412}
+  dmaxColor: {r: 0, g: 1, b: 0, a: 0.039215688}
+--- !u!114 &7681302145316495478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717012714212383934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f16098907078d459fb1bf9f27d2374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 2848748342560813469, guid: a1e3db05ee453bc43860e9c072f49821, type: 3}

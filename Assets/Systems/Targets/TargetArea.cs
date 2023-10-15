@@ -2,29 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// README: This is the Target Spawning System, created by Robin Pound
+// README: This is the TargetArea, created by Robin Pound 14/10/2023
 // TIP: The y values are used in their negative form as a perminant quickfix
-public class TargetSpawningSystem : MonoBehaviour
+public class TargetArea : MonoBehaviour
 {
-    [Header("Settings")]
+    [Header("Step 1: Distance")]
+    [Tooltip("Minimum distance from center.")]
+    [SerializeField] private float dmin; 
+    [Tooltip("Maximum distance from center.")]
+    [SerializeField] private float dmax;
 
+    [Header("Step 2: X-Angle")]
     [Tooltip("Minimum X angle.")]
     [SerializeField] private float xmin;
     [Tooltip("Maximum X angle.")]
     [SerializeField] private float xmax;
 
+    [Header("Step 3: Y-Angle")]
     [Tooltip("Minimum Y angle.")]
     [SerializeField] private float ymin;
     [Tooltip("Maximum Y angle.")]
     [SerializeField] private float ymax;
 
-    [Tooltip("Minimum distance from center.")]
-    [SerializeField] private float dmin;
-    [Tooltip("Maximum distance from center.")]
-    [SerializeField] private float dmax;
-
-    [Header("Colours")]
-
+    [Header("SET-ALREADY")]
     [SerializeField] Color dminColor;
     [SerializeField] Color dmaxColor;
 
@@ -103,4 +103,11 @@ public class TargetSpawningSystem : MonoBehaviour
             );
         }
     }
+
+    public float Dmin { get => dmin; }
+    public float Dmax { get => dmax; }
+    public float Xmin { get => xmin; }
+    public float Xmax { get => xmax; }
+    public float Ymin { get => ymin; }
+    public float Ymax { get => ymax; }
 }
