@@ -58,43 +58,19 @@ public class TargetArea : MonoBehaviour
         Gizmos.color = Color.cyan;
         for (float i = xmin; i < xmax; i += LINESPACE) 
         {
-            Gizmos.DrawLine(
-                centre + Quaternion.Euler(-ymax, i, 0) * Vector3.forward * dmax, 
-                centre + Quaternion.Euler(-ymax, i + LINELENGTH, 0) * Vector3.forward * dmax
-            );
-            Gizmos.DrawLine(
-                centre + Quaternion.Euler(-ymin, i, 0) * Vector3.forward * dmax,  
-                centre + Quaternion.Euler(-ymin, i + LINELENGTH, 0) * Vector3.forward * dmax
-            );
-            Gizmos.DrawLine(
-                centre + Quaternion.Euler(-ymax, i, 0) * Vector3.forward * dmin, 
-                centre + Quaternion.Euler(-ymax, i + LINELENGTH, 0) * Vector3.forward * dmin
-            );
-            Gizmos.DrawLine(
-                centre + Quaternion.Euler(-ymin, i, 0) * Vector3.forward * dmin, 
-                centre + Quaternion.Euler(-ymin, i + LINELENGTH, 0) * Vector3.forward * dmin
-            );
+            DrawLine(centre, -ymax, i, -ymax, i + LINELENGTH, dmax, dmax);
+            DrawLine(centre, -ymin, i, -ymin, i + LINELENGTH, dmax, dmax);
+            DrawLine(centre, -ymax, i, -ymax, i + LINELENGTH, dmin, dmin);
+            DrawLine(centre, -ymin, i, -ymin, i + LINELENGTH, dmin, dmin);
         }
         // DOTTED LINES Y-AXIS
         Gizmos.color = Color.cyan;
         for (float i = -ymax; i < -ymin; i += LINESPACE)
         {
-            Gizmos.DrawLine(
-                centre + Quaternion.Euler(i, xmax, 0) * Vector3.forward * dmax,
-                centre + Quaternion.Euler(i + LINELENGTH, xmax, 0) * Vector3.forward * dmax
-            );
-            Gizmos.DrawLine(
-                centre + Quaternion.Euler(i, xmin, 0) * Vector3.forward * dmax,
-                centre + Quaternion.Euler(i + LINELENGTH, xmin, 0) * Vector3.forward * dmax
-            );
-            Gizmos.DrawLine(
-                centre + Quaternion.Euler(i, xmax, 0) * Vector3.forward * dmin,
-                centre + Quaternion.Euler(i + LINELENGTH, xmax, 0) * Vector3.forward * dmin
-            );
-            Gizmos.DrawLine(
-                centre + Quaternion.Euler(i, xmin, 0) * Vector3.forward * dmin,
-                centre + Quaternion.Euler(i + LINELENGTH, xmin, 0) * Vector3.forward * dmin
-            );
+            DrawLine(centre, i, xmax, i + LINELENGTH, xmax, dmax, dmax);
+            DrawLine(centre, i, xmin, i + LINELENGTH, xmin, dmax, dmax);
+            DrawLine(centre, i, xmax, i + LINELENGTH, xmax, dmin, dmin);
+            DrawLine(centre, i, xmin, i + LINELENGTH, xmin, dmin, dmin);
         }
     }
 
