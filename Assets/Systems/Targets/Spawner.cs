@@ -6,13 +6,19 @@ using static Google.ProtocolBuffers.DescriptorProtos.SourceCodeInfo.Types;
 public class Spawner : MonoBehaviour
 {
     [Header("Settings")]
+
     [Tooltip("This isn't the spawn rate, this is a number which influences the spawn rate. The spawn rate is calculated internally.")]
     [SerializeField] float SpawnRateMultiplier;
-    [Tooltip("How much the spawner will adjust it's spawnrate compared to how many cubes there are")] // ??? How is this going to work, idk yet
-    [SerializeField] float SpawnRateVarience;
+    
+    [Tooltip("How much the spawner will adjust it's spawnrate compared to how many cubes there are. Set to 0 to disable")]
+    [SerializeField] float SpawnRateVarience; // ??? How is this going to work, idk yet
 
-    private float SpawnRate; 
-    private float PercentageMoving; // To-DO
+    [Tooltip("How many targets ")]
+    [SerializeField] float IdealPopulation;
+
+    [Header("REMOVE SERIALSED AFTER")]
+    [SerializeField] float SpawnRate;
+    [SerializeField] float PercentageMoving; // To-DO
 
     [Header("References")]
     [SerializeField] GameObject Target;
@@ -20,7 +26,14 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < 100; i++){spawnRandomTarget();}
+        StartCoroutine(StartSpawning());
+    }
+    private IEnumerator StartSpawning() {
+        while (true)
+        {
+            yield return new WaitForSeconds(SpawnRate);
+            spawnRandomTarget();
+        }
     }
     private void spawnRandomTarget()
     {
