@@ -9,8 +9,7 @@ public class Spawner : MonoBehaviour
     [Tooltip("SpawnRate is the number of targets spawning per second (Targets/s)")]
     [SerializeField] float SpawnRate;
     [Tooltip("A moving target lerps between two locations. 0% means none, 100% means all.")]
-    [Range(0,100)]
-    [SerializeField] float PercentageMoving; // To-DO
+    [Range(0, 100)] [SerializeField] float PercentageMoving; // To-DO
 
     [Header("References")]
     [SerializeField] GameObject Target;
