@@ -51,7 +51,7 @@ MonoBehaviour:
   ymin: -10
   ymax: 40
   dminColor: {r: 0.063154235, g: 0.103773594, b: 0.059229266, a: 0.078431375}
-  dmaxColor: {r: 0, g: 1, b: 0, a: 0.039215688}
+  dmaxColor: {r: 0, g: 1, b: 0, a: 0.019607844}
 --- !u!114 &7681302145316495478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,3 +65,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 2848748342560813469, guid: a1e3db05ee453bc43860e9c072f49821, type: 3}
+  Area: {fileID: 8091311501408456973}

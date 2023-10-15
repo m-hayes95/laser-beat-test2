@@ -24,10 +24,16 @@ public class TargetArea : MonoBehaviour
     [Tooltip("Maximum Y angle.")]
     [SerializeField] private float ymax;
 
-    [Header("SET-ALREADY")]
+    [Header("Sphere Colours")]
     [SerializeField] Color dminColor;
     [SerializeField] Color dmaxColor;
 
+    private void DrawLine(Vector3 centre, float z11, float z12, float z21, float z22, float d1, float d2) {
+        Gizmos.DrawLine( // TOP RIGHT
+            centre + Quaternion.Euler(z11, z12, 0) * Vector3.forward * d1,
+            centre + Quaternion.Euler(z21, z22, 0) * Vector3.forward * d2
+        );
+    }
     private void OnDrawGizmos()
     {
         // SETTINGS
@@ -43,22 +49,10 @@ public class TargetArea : MonoBehaviour
 
         // 4 Lines
         Gizmos.color = Color.cyan;
-        Gizmos.DrawLine( // TOP RIGHT
-            centre + Quaternion.Euler(-ymax, xmax, 0) * Vector3.forward * dmin,
-            centre + Quaternion.Euler(-ymax, xmax, 0) * Vector3.forward * dmax
-        );
-        Gizmos.DrawLine( // BOTTOM RIGHT
-            centre + Quaternion.Euler(-ymin, xmax, 0) * Vector3.forward * dmin,
-            centre + Quaternion.Euler(-ymin, xmax, 0) * Vector3.forward * dmax
-        );
-        Gizmos.DrawLine( // BOTTOM LEFT
-            centre + Quaternion.Euler(-ymin, xmin, 0) * Vector3.forward * dmin,
-            centre + Quaternion.Euler(-ymin, xmin, 0) * Vector3.forward * dmax 
-        );
-        Gizmos.DrawLine( // TOP Left
-            centre + Quaternion.Euler(-ymax, xmin, 0) * Vector3.forward * dmin,
-            centre + Quaternion.Euler(-ymax, xmin, 0) * Vector3.forward * dmax
-        );
+        DrawLine(centre, -ymax, xmax, -ymax, xmax, dmin, dmax);
+        DrawLine(centre, -ymin, xmax, -ymin, xmax, dmin, dmax);
+        DrawLine(centre, -ymin, xmin, -ymin, xmin, dmin, dmax);
+        DrawLine(centre, -ymax, xmin, -ymax, xmin, dmin, dmax);
 
         // DOTTED LINES X-AXIS
         Gizmos.color = Color.cyan;
@@ -104,6 +98,7 @@ public class TargetArea : MonoBehaviour
         }
     }
 
+    // Getters
     public float Dmin { get => dmin; }
     public float Dmax { get => dmax; }
     public float Xmin { get => xmin; }
