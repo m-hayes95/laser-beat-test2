@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
 {
     [Header("Settings")]
     [Tooltip("SpawnRate is the number of targets spawning per second (Targets/s)")]
-    [SerializeField] float SpawnRate;
+    [Range(0, 5)][SerializeField] float SpawnRate;
     [Tooltip("A moving target lerps between two locations. 0% means none, 100% means all.")]
     [Range(0, 100)] [SerializeField] float PercentageMoving; // To-DO
 
@@ -19,7 +19,8 @@ public class Spawner : MonoBehaviour
     {
         StartCoroutine(StartSpawning());
     }
-    private IEnumerator StartSpawning() {
+    private IEnumerator StartSpawning() 
+    {
         while (true)
         {
             yield return new WaitForSeconds(SpawnRate);
@@ -28,7 +29,8 @@ public class Spawner : MonoBehaviour
     }
     private void spawnRandomTarget()
     {
-        Instantiate(Target, getRandomLocationInArea(), Quaternion.identity);
+        GameObject target = Instantiate(Target, getRandomLocationInArea(), Quaternion.identity);
+        target.GetComponent<TargetMovement>().SetTargetMoving();
     }
     public Vector3 getRandomLocationInArea() {
         float randomDistance = Random.Range(Area.Dmin, Area.Dmax);
