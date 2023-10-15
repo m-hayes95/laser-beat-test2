@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TargetMovement : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class TargetMovement : MonoBehaviour
     [Tooltip("Seconds until the target changes direction")]
     [Range(0, 10)][SerializeField] float SecDirectionChange;
     [Tooltip("Speed of target")]
-    [Range(0, 2)][SerializeField] float Speed;
+    [Range(0, 5)][SerializeField] float Speed;
 
     [Header("Refereces")]
     [SerializeField] Spawner spawner;
@@ -23,8 +24,13 @@ public class TargetMovement : MonoBehaviour
             targetPosition = spawner.getRandomLocationInArea();
         }
     }
+    void Start()
+    {
+        targetPosition = transform.position;
+    }
     void Update() 
     {
-        transform.position += targetPosition * Speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, Speed * Time.deltaTime);
+        //transform.position = targetPosition;
     }
 }

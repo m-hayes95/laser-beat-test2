@@ -105,5 +105,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SecDirectionChange: 5
-  Speed: 0.5
+  Speed: 5
   spawner: {fileID: 7681302145316495478, guid: 69f93d4ccd0ace3408125d5de8753068, type: 3}
