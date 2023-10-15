@@ -1,11 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using Liminal.Core.Fader;
+using Liminal.Platform.Experimental.App.Experiences;
+using Liminal.SDK.Core;
+using Liminal.SDK.VR;
+using Liminal.SDK.VR.Avatars;
+using Liminal.SDK.VR.Input;
 using UnityEngine;
 
 public class GunRay : MonoBehaviour
 {
-    //[Range(1f, 5000f)] [SerializeField] private float rayLength = 10f;
     [SerializeField] private Transform leftGunMuzzle;
     [SerializeField] private Transform rightGunMuzzle;
 
@@ -28,22 +31,46 @@ public class GunRay : MonoBehaviour
     }
     private void Update()
     {
- 
+        var avatar = VRAvatar.Active;
+        if (avatar == null)
+            return;
 
-        if (Input.GetMouseButtonDown(0))
+        var rightInput = GetInput(VRInputDeviceHand.Right);
+        var leftInput = GetInput(VRInputDeviceHand.Left);
+
+
+        //if (Input.GetMouseButtonDown(0)) 
+        if (leftInput != null)
         {
-            Debug.Log("Left Gun Shot");
-            CastRayLeftGun();
-            gunShotLeftAnim.Play();
-            gunShotSound.Play();
+            if (leftInput.GetButtonDown(VRButton.Trigger))
+            {
+                Debug.Log("Left Gun Shot");
+                CastRayLeftGun();
+                gunShotLeftAnim.Play();
+                gunShotSound.Play();
+            }
         }
-        if (Input.GetMouseButtonDown(1))
+        
+        
+        //if (Input.GetMouseButtonDown(1))
+        if (rightInput != null)
         {
-            Debug.Log("Right Gun Shot");
-            CastRayRightGun();
-            gunShotRightAnim.Play();
-            gunShotSound.Play();
+            if (rightInput.GetButtonDown(VRButton.Trigger))
+            {
+                Debug.Log("Right Gun Shot");
+                CastRayRightGun();
+                gunShotRightAnim.Play();
+                gunShotSound.Play();
+            }
         }
+        
+    }
+
+    private IVRInputDevice GetInput(VRInputDeviceHand hand)
+    {
+        var device = VRDevice.Device;
+        return hand == VRInputDeviceHand.Left ? 
+            device.SecondaryInputDevice : device.PrimaryInputDevice;
     }
 
     private void CastRayLeftGun()
