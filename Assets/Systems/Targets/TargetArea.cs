@@ -8,21 +8,21 @@ public class TargetArea : MonoBehaviour
 {
     [Header("Step 1: Distance")]
     [Tooltip("Minimum distance from center.")]
-    [SerializeField] private float dmin; 
+    [Range(0, 300)][SerializeField] private float dmin;
     [Tooltip("Maximum distance from center.")]
-    [SerializeField] private float dmax;
+    [Range(0, 300)][SerializeField] private float dmax;
 
     [Header("Step 2: X-Angle")]
     [Tooltip("Minimum X angle.")]
-    [SerializeField] private float xmin;
+    [Range(-180, 0)][SerializeField] private float xmin;
     [Tooltip("Maximum X angle.")]
-    [SerializeField] private float xmax;
+    [Range(0, 180)][SerializeField] private float xmax;
 
     [Header("Step 3: Y-Angle")]
     [Tooltip("Minimum Y angle.")]
-    [SerializeField] private float ymin;
+    [Range(-90, 0)][SerializeField] private float ymin;
     [Tooltip("Maximum Y angle.")]
-    [SerializeField] private float ymax;
+    [Range(0, 90)][SerializeField] private float ymax;
 
     [Header("Sphere Colours")]
     [SerializeField] Color dminColor;

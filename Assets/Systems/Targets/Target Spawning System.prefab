@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e27159ed2195d84d87811fd37f5d777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmin: 10
-  dmax: 30
-  xmin: -90
-  xmax: 90
-  ymin: -10
-  ymax: 40
+  dmin: 17
+  dmax: 50
+  xmin: -95
+  xmax: 95
+  ymin: -34.8
+  ymax: 29.7
   dminColor: {r: 0.063154235, g: 0.103773594, b: 0.059229266, a: 0.078431375}
   dmaxColor: {r: 0, g: 1, b: 0, a: 0.019607844}
 --- !u!114 &7681302145316495478
@@ -64,10 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f16098907078d459fb1bf9f27d2374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnRateMultiplier: 0
-  SpawnRateVarience: 0
-  IdealPopulation: 0
-  SpawnRate: 0
-  PercentageMoving: 0
+  SpawnRate: 2
+  PercentageMoving: 50
   Target: {fileID: 2848748342560813469, guid: a1e3db05ee453bc43860e9c072f49821, type: 3}
   Area: {fileID: 8091311501408456973}
