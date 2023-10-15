@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] float SpawnRateMultiplier;
     
     [Tooltip("How much the spawner will adjust it's spawnrate compared to how many cubes there are. Set to 0 to disable")]
-    [SerializeField] float SpawnRateVarience; // ??? How is this going to work, idk yet
+    [SerializeField] float StandardDeviation; // ??? How is this going to work, idk yet
 
     [Tooltip("How many targets ")]
     [SerializeField] float IdealPopulation;
