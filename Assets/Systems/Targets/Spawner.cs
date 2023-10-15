@@ -6,18 +6,10 @@ using static Google.ProtocolBuffers.DescriptorProtos.SourceCodeInfo.Types;
 public class Spawner : MonoBehaviour
 {
     [Header("Settings")]
-
-    [Tooltip("This isn't the spawn rate, this is a number which influences the spawn rate. The spawn rate is calculated internally.")]
-    [SerializeField] float SpawnRateMultiplier;
-    
-    [Tooltip("How much the spawner will adjust it's spawnrate compared to how many cubes there are. Set to 0 to disable")]
-    [SerializeField] float StandardDeviation; // ??? How is this going to work, idk yet
-
-    [Tooltip("How many targets ")]
-    [SerializeField] float IdealPopulation;
-
-    [Header("REMOVE SERIALSED AFTER")]
+    [Tooltip("SpawnRate is the number of targets spawning per second (Targets/s)")]
     [SerializeField] float SpawnRate;
+    [Tooltip("A moving target lerps between two locations. 0% means none, 100% means all.")]
+    [Range(0,100)]
     [SerializeField] float PercentageMoving; // To-DO
 
     [Header("References")]
@@ -37,10 +29,13 @@ public class Spawner : MonoBehaviour
     }
     private void spawnRandomTarget()
     {
+        Instantiate(Target, getRandomLocationInArea(), Quaternion.identity);
+    }
+    public Vector3 getRandomLocationInArea() {
         float randomDistance = Random.Range(Area.Dmin, Area.Dmax);
         float randomXAngle = Random.Range(Area.Xmin, Area.Xmax);
         float randomYAngle = Random.Range(Area.Ymin, Area.Ymax);
-        Vector3 Randomlocation = transform.position + Quaternion.Euler(-randomYAngle, randomXAngle, 0) * Vector3.forward * randomDistance;
-        Instantiate(Target, Randomlocation, Quaternion.identity);
+        Quaternion roation = Quaternion.Euler(-randomYAngle, randomXAngle, 0);
+        return transform.position + roation * Vector3.forward * randomDistance;
     }
 }
