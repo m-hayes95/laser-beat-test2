@@ -88,11 +88,11 @@ public class GunRay : MonoBehaviour
     {
         Gizmos.color = Color.red;
   
-        if (lastRayHitLeft != null)
+        if (lastRayHitLeft != Vector3.zero)
         {
             Gizmos.DrawLine(leftGunMuzzle.position, lastRayHitLeft);
         }
-        if (lastRayHitRight != null)
+        if (lastRayHitRight != Vector3.zero)
         {
             Gizmos.DrawLine(rightGunMuzzle.position, lastRayHitRight);
         }
