@@ -37,10 +37,23 @@ public class GunRay : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Number of targets hit " + targetsHit);
+        //Debug.Log("Number of targets hit " + targetsHit);
+
+
+        var avatar = VRAvatar.Active;
+        if (avatar == null)
+            return;
+
+        var rightInput = GetInput(VRInputDeviceHand.Right);
+        var leftInput = GetInput(VRInputDeviceHand.Left);
+        
+
+        Debug.Log("right input = " + rightInput);
+        Debug.Log("left input = " + leftInput);
 
         // Add shoot delay
-        if (Input.GetMouseButtonDown(0)) 
+        //if (Input.GetMouseButtonDown(0)) 
+        if (rightInput.GetButtonDown(VRButton.Trigger))
         {
             Debug.Log("Left Gun Shot");
             CastRayLeftGun();
@@ -48,15 +61,22 @@ public class GunRay : MonoBehaviour
             gunShotSound.Play();
         }
 
-
-        if (Input.GetMouseButtonDown(1))
+        
+        //if (Input.GetMouseButtonDown(1))
+        if (leftInput.GetButtonDown(VRButton.Back))
         {
             Debug.Log("Right Gun Shot");
             CastRayRightGun();
             gunShotRightAnim.Play();
             gunShotSound.Play();
         }
+        
+    }
 
+    private IVRInputDevice GetInput(VRInputDeviceHand hand)
+    {
+        var device = VRDevice.Device;
+        return hand == VRInputDeviceHand.Left ? device.SecondaryInputDevice : device.PrimaryInputDevice;
     }
 
 
