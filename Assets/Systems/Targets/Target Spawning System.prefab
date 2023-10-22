@@ -64,7 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f16098907078d459fb1bf9f27d2374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnRate: 0.18
-  PercentageMoving: 50
-  Target: {fileID: 2848748342560813469, guid: a1e3db05ee453bc43860e9c072f49821, type: 3}
+  SpawnRate: 0.5
+  PercentageMoving: 15
+  Target1: {fileID: 763205383370439422, guid: d017cbd584fba8c478e2ae440b8a0202, type: 3}
+  Target2: {fileID: 9218521980358519941, guid: d9c95076633195943ba3185532bc517f, type: 3}
   Area: {fileID: 8091311501408456973}

@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using UnityEngine;
-using static Google.ProtocolBuffers.DescriptorProtos.SourceCodeInfo.Types;
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
@@ -12,7 +12,8 @@ public class Spawner : MonoBehaviour
     [Range(0, 100)] [SerializeField] float PercentageMoving; // To-DO
 
     [Header("References")]
-    [SerializeField] GameObject Target;
+    [SerializeField] GameObject Target1;
+    [SerializeField] GameObject Target2;
     [SerializeField] TargetArea Area;
 
     void Start()
@@ -29,8 +30,14 @@ public class Spawner : MonoBehaviour
     }
     private void spawnRandomTarget()
     {
-        GameObject target = Instantiate(Target, getRandomLocationInArea(), Quaternion.identity);
-        target.GetComponent<TargetMovement>().SetTargetMoving();
+        GameObject newtarget;
+        // Colour
+        Boolean randomColour = Random.Range(0, 2) == 0;
+        if (randomColour) newtarget = Instantiate(Target1, getRandomLocationInArea(), Quaternion.identity);
+        else newtarget = Instantiate(Target2, getRandomLocationInArea(), Quaternion.identity);
+        // Moving
+        Boolean randomMove = Random.Range(0, 100) > PercentageMoving;
+        if (randomMove) newtarget.GetComponent<TargetMovement>().SetTargetMoving();
     }
     public Vector3 getRandomLocationInArea() {
         float randomDistance = Random.Range(Area.Dmin, Area.Dmax);
