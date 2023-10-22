@@ -48,7 +48,7 @@ MonoBehaviour:
   dmax: 50
   xmin: -95
   xmax: 95
-  ymin: -34.8
+  ymin: 0
   ymax: 29.7
   dminColor: {r: 0.063154235, g: 0.103773594, b: 0.059229266, a: 0.078431375}
   dmaxColor: {r: 0, g: 1, b: 0, a: 0.019607844}
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f16098907078d459fb1bf9f27d2374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnRate: 2
+  SpawnRate: 0.18
   PercentageMoving: 50
   Target: {fileID: 2848748342560813469, guid: a1e3db05ee453bc43860e9c072f49821, type: 3}
   Area: {fileID: 8091311501408456973}
