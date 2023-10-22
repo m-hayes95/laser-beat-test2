@@ -15,6 +15,8 @@ public class GunRay : MonoBehaviour
     [SerializeField] private GameObject leftGun;
     [SerializeField] private GameObject rightGun;
 
+    [Range(0.1f, 1f)] [SerializeField] private float shotDelay;
+
     private Animation gunShotLeftAnim;
     private Animation gunShotRightAnim;
 
@@ -22,6 +24,9 @@ public class GunRay : MonoBehaviour
 
     private Vector3 lastRayHitLeft;
     private Vector3 lastRayHitRight;
+
+    private int targetsHit = 0;
+
 
     private void Start()
     {
@@ -32,6 +37,9 @@ public class GunRay : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Number of targets hit " + targetsHit);
+
+        // Add shoot delay
         if (Input.GetMouseButtonDown(0)) 
         {
             Debug.Log("Left Gun Shot");
@@ -64,6 +72,8 @@ public class GunRay : MonoBehaviour
             {
                 lastRayHitLeft = hit.point;
                 Debug.Log("Left gun hit " + hit.collider.gameObject.name);
+                Destroy(hit.collider.gameObject, .1f);
+                targetsHit++;
             }
         }
     }
@@ -80,6 +90,8 @@ public class GunRay : MonoBehaviour
             {
                 lastRayHitRight = hit.point;
                 Debug.Log("Right gun hit " + hit.collider.gameObject.name);
+                Destroy(hit.collider.gameObject, .1f);
+                targetsHit ++;
             }
         }
     }
