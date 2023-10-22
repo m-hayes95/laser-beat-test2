@@ -20,8 +20,8 @@ public class GunRay : MonoBehaviour
 
     private AudioSource gunShotSound;
 
-    private Vector3 latestRayHitLeft;
-    private Vector3 latestRayHitRight;
+    private Vector3 lastRayHitLeft;
+    private Vector3 lastRayHitRight;
 
     private void Start()
     {
@@ -29,49 +29,28 @@ public class GunRay : MonoBehaviour
         gunShotRightAnim = rightGun.GetComponent<Animation>();
         gunShotSound = leftGun.GetComponent<AudioSource>();    
     }
+
     private void Update()
     {
-        var avatar = VRAvatar.Active;
-        if (avatar == null)
-            return;
-
-        var rightInput = GetInput(VRInputDeviceHand.Right);
-        var leftInput = GetInput(VRInputDeviceHand.Left);
-
-
-        //if (Input.GetMouseButtonDown(0)) 
-        if (leftInput != null)
+        if (Input.GetMouseButtonDown(0)) 
         {
-            if (leftInput.GetButtonDown(VRButton.Trigger))
-            {
-                Debug.Log("Left Gun Shot");
-                CastRayLeftGun();
-                gunShotLeftAnim.Play();
-                gunShotSound.Play();
-            }
+            Debug.Log("Left Gun Shot");
+            CastRayLeftGun();
+            gunShotLeftAnim.Play();
+            gunShotSound.Play();
         }
-        
-        
-        //if (Input.GetMouseButtonDown(1))
-        if (rightInput != null)
+
+
+        if (Input.GetMouseButtonDown(1))
         {
-            if (rightInput.GetButtonDown(VRButton.Trigger))
-            {
-                Debug.Log("Right Gun Shot");
-                CastRayRightGun();
-                gunShotRightAnim.Play();
-                gunShotSound.Play();
-            }
+            Debug.Log("Right Gun Shot");
+            CastRayRightGun();
+            gunShotRightAnim.Play();
+            gunShotSound.Play();
         }
-        
+
     }
 
-    private IVRInputDevice GetInput(VRInputDeviceHand hand)
-    {
-        var device = VRDevice.Device;
-        return hand == VRInputDeviceHand.Left ? 
-            device.SecondaryInputDevice : device.PrimaryInputDevice;
-    }
 
     private void CastRayLeftGun()
     {
@@ -80,9 +59,10 @@ public class GunRay : MonoBehaviour
         
         if (Physics.Raycast(gunRay, out hit))
         {
-            if (hit.collider != null)
+            if (hit.collider != null && 
+                hit.collider.gameObject.GetComponent<Target1Tag>())
             {
-                latestRayHitLeft = hit.point;
+                lastRayHitLeft = hit.point;
                 Debug.Log("Left gun hit " + hit.collider.gameObject.name);
             }
         }
@@ -95,9 +75,10 @@ public class GunRay : MonoBehaviour
   
         if (Physics.Raycast(gunRay, out hit))
         {
-            if (hit.collider != null)
+            if (hit.collider != null &&
+                hit.collider.gameObject.GetComponent<Target2Tag>())
             {
-                latestRayHitRight = hit.point;
+                lastRayHitRight = hit.point;
                 Debug.Log("Right gun hit " + hit.collider.gameObject.name);
             }
         }
@@ -107,13 +88,13 @@ public class GunRay : MonoBehaviour
     {
         Gizmos.color = Color.red;
   
-        if (latestRayHitLeft != null)
+        if (lastRayHitLeft != Vector3.zero)
         {
-            Gizmos.DrawLine(leftGunMuzzle.position, latestRayHitLeft);
+            Gizmos.DrawLine(leftGunMuzzle.position, lastRayHitLeft);
         }
-        if (latestRayHitRight != null)
+        if (lastRayHitRight != Vector3.zero)
         {
-            Gizmos.DrawLine(rightGunMuzzle.position, latestRayHitRight);
+            Gizmos.DrawLine(rightGunMuzzle.position, lastRayHitRight);
         }
         
     }
