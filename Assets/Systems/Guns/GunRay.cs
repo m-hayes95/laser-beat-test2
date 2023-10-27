@@ -15,7 +15,14 @@ public class GunRay : MonoBehaviour
     [SerializeField] private GameObject leftGun;
     [SerializeField] private GameObject rightGun;
 
-    [Range(0.1f, 1f)] [SerializeField] private float shotDelay;
+    [SerializeField] private GameObject leftController;
+    [SerializeField] private GameObject rightController;
+
+    [SerializeField] private GameObject laser;
+
+
+    // TO DO - Add Shot delay to remove bug where some shots are not registering whilst shooting too fast.
+    // [Range(0.1f, 1f)] [SerializeField] private float shotDelay;
 
     private Animation gunShotLeftAnim;
     private Animation gunShotRightAnim;
@@ -36,37 +43,56 @@ public class GunRay : MonoBehaviour
 
     private void Update()
     {
+        // TO DO: Move input and target hit to seperate scripts
+
         //Debug.Log("Number of targets hit " + targetsHit);
 
         var avatar = VRAvatar.Active;
         if (avatar == null) return;
 
+        var leftInput = GetInput(VRInputDeviceHand.Left);
+        var rightInput = GetInput(VRInputDeviceHand.Right);
+     
+        //if (Input.GetMouseButtonDown(0)
+        if (leftInput != null)
+        {
+            if (leftInput.GetButtonDown(VRButton.Trigger))
+            {
+                Debug.Log("Left Gun Shot");
+                CastRayLeftGun();
+                Instantiate(laser, leftGunMuzzle.position, Quaternion.identity);
+                gunShotLeftAnim.Play();
+                gunShotSound.Play();
+            }
+        }
+
+        //if (Input.GetMouseButtonDown(1))
+        if (rightInput != null)
+        {
+            if (rightInput.GetButtonDown(VRButton.Trigger))
+            {
+                Debug.Log("Right Gun Shot");
+                CastRayRightGun();
+                Instantiate(laser, rightGunMuzzle.position, Quaternion.identity);
+                gunShotRightAnim.Play();
+                gunShotSound.Play();
+            }
+        }
+
+        /* Alt input???
         var rightInput = VRDevice.Device.SecondaryInputDevice;
         if (rightInput == null) {Debug.LogError("rightInput NULL"); return; } 
 
         var leftInput = VRDevice.Device.PrimaryInputDevice;
         if (leftInput == null) { Debug.LogError("leftInput NULL"); return; }
-
-        // Add shoot delay
-        //if (Input.GetMouseButtonDown(0)) 
-        if (rightInput.GetButtonDown(VRButton.Trigger))
-        {
-            Debug.Log("Left Gun Shot");
-            CastRayLeftGun();
-            gunShotLeftAnim.Play();
-            gunShotSound.Play();
-        }
-
-        //if (Input.GetMouseButtonDown(1))
-        if (leftInput.GetButtonDown(VRButton.Back))
-        {
-            Debug.Log("Right Gun Shot");
-            CastRayRightGun();
-            gunShotRightAnim.Play();
-            gunShotSound.Play();
-        }
+        */
     }
 
+    private IVRInputDevice GetInput(VRInputDeviceHand hand)
+    {
+        var device = VRDevice.Device;
+        return hand == VRInputDeviceHand.Left ? device.SecondaryInputDevice : device.PrimaryInputDevice;
+    }
 
     private void CastRayLeftGun()
     {
@@ -107,14 +133,17 @@ public class GunRay : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-  
-        if (lastRayHitLeft != Vector3.zero)
-        {
-            Gizmos.DrawLine(leftGunMuzzle.position, lastRayHitLeft);
-        }
-        if (lastRayHitRight != Vector3.zero)
-        {
-            Gizmos.DrawLine(rightGunMuzzle.position, lastRayHitRight);
-        }
+        float roLx = leftController.transform.rotation.x;
+        float roLy = leftController.transform.rotation.y;
+        float roLz = leftController.transform.rotation.z;
+        // Debug.Log("ro L x = " + roLx + "\n ro L y = " + roLy);
+
+        DrawLine(leftGunMuzzle.position, roLx, roLy, roLz, 100);
+    }
+
+    private void DrawLine(Vector3 startPos, float x, float y, float z, float distance)
+    {
+        Gizmos.DrawLine(startPos, 
+            startPos + Quaternion.Euler(x, y, z) * Vector3.forward * distance);
     }
 }

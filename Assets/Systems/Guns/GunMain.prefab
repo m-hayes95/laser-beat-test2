@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6286368517441151391}
   - component: {fileID: 7319092715947402295}
   m_Layer: 0
-  m_Name: Gun1
+  m_Name: GunMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4052813956325588606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.000000031978, y: 0.27253, z: 0.39862}
+  m_LocalScale: {x: 0.4635, y: 0.4635, z: 0.4635}
   m_Children:
   - {fileID: 539758058840820085}
   - {fileID: 8068613684849156695}

@@ -241,7 +241,7 @@ PrefabInstance:
     - target: {fileID: 5408020805108883763, guid: 2b11504f2cef4ea49ab5457dae6e03be,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.5629358
+      value: 1.29
       objectReference: {fileID: 0}
     - target: {fileID: 5408020805108883763, guid: 2b11504f2cef4ea49ab5457dae6e03be,
         type: 3}
@@ -286,17 +286,17 @@ PrefabInstance:
     - target: {fileID: 5408020805108883763, guid: 2b11504f2cef4ea49ab5457dae6e03be,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.59236
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5408020805108883763, guid: 2b11504f2cef4ea49ab5457dae6e03be,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.59236
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5408020805108883763, guid: 2b11504f2cef4ea49ab5457dae6e03be,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.59236
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b11504f2cef4ea49ab5457dae6e03be, type: 3}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 260468761}
   - component: {fileID: 260468760}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,6 +392,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260468758}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &378675760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974691804174397458, guid: 480e0b849df88cb4eb71b19fde43860f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1339136842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &430220310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3797777442872842264, guid: 2b11504f2cef4ea49ab5457dae6e03be,
@@ -515,7 +521,9 @@ MonoBehaviour:
   rightGunMuzzle: {fileID: 662004181}
   leftGun: {fileID: 1042656027}
   rightGun: {fileID: 5057423}
-  shotDelay: 0
+  leftController: {fileID: 378675760}
+  rightController: {fileID: 1530389887}
+  laser: {fileID: 3306406984639954662, guid: 1a87b57e94369dd49bea807b84a2bd8b, type: 3}
 --- !u!4 &662004181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3755897399823887958, guid: f35839cefab02904d93e2d0448dd97de,
@@ -683,17 +691,17 @@ PrefabInstance:
     - target: {fileID: 5451304964197603197, guid: f35839cefab02904d93e2d0448dd97de,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.59236
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5451304964197603197, guid: f35839cefab02904d93e2d0448dd97de,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.59236
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5451304964197603197, guid: f35839cefab02904d93e2d0448dd97de,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.59236
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f35839cefab02904d93e2d0448dd97de, type: 3}
@@ -904,12 +912,12 @@ PrefabInstance:
     - target: {fileID: 2974691804174397456, guid: 480e0b849df88cb4eb71b19fde43860f,
         type: 3}
       propertyPath: m_Tracking.MatchActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2974691802660330966, guid: 480e0b849df88cb4eb71b19fde43860f,
         type: 3}
       propertyPath: m_Tracking.MatchActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2974691802660330966, guid: 480e0b849df88cb4eb71b19fde43860f,
         type: 3}
@@ -921,8 +929,19 @@ PrefabInstance:
       propertyPath: m_Tracking.MatchRotation
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2974691802660330961, guid: 480e0b849df88cb4eb71b19fde43860f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2729359
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 480e0b849df88cb4eb71b19fde43860f, type: 3}
+--- !u!1 &1530389887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974691802660330960, guid: 480e0b849df88cb4eb71b19fde43860f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1339136842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1676988087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +1029,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1720642977}
   m_Layer: 0
-  m_Name: Prototype Objects
+  m_Name: '---Enviroment---'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
